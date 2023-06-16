@@ -9,6 +9,8 @@ enum SeatState {
 
   /// this seat is already sold to other user
   sold,
+  soldMale,
+  soldFemale,
 
   /// this seat is disabled to be booked for some reason
   disabled,
