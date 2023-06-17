@@ -72,10 +72,13 @@ class _SeatWidgetState extends State<SeatWidget> {
                   fit: BoxFit.cover,
                 ),
             )
-            : SizedBox(
-                height: widget.model.seatSvgSize.toDouble(),
-                width: widget.model.seatSvgSize.toDouble(),
-              ),
+            : Padding(
+          padding: EdgeInsets.only(bottom: 6,left: 3,right: 3),
+              child: SizedBox(
+                  height: widget.model.seatSvgSize.toDouble(),
+                  width: widget.model.seatSvgSize.toDouble(),
+                ),
+            ),
       );
     }
     return const SizedBox();
