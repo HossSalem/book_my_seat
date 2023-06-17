@@ -64,7 +64,7 @@ class _SeatWidgetState extends State<SeatWidget> {
         },
         child: seatState != SeatState.empty
             ? Padding(
-          padding: EdgeInsets.only(bottom: 6,left: 6),
+          padding: EdgeInsets.only(bottom: 6,left: 3,right: 3),
               child: SvgPicture.asset(
                   _getSvgPath(safeCheckedSeatState),
                   height: widget.model.seatSvgSize.toDouble(),
