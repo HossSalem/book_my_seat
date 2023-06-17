@@ -63,12 +63,15 @@ class _SeatWidgetState extends State<SeatWidget> {
           }
         },
         child: seatState != SeatState.empty
-            ? SvgPicture.asset(
-                _getSvgPath(safeCheckedSeatState),
-                height: widget.model.seatSvgSize.toDouble(),
-                width: widget.model.seatSvgSize.toDouble(),
-                fit: BoxFit.cover,
-              )
+            ? Padding(
+          padding: EdgeInsets.symmetric(vertical: 6,horizontal: 4),
+              child: SvgPicture.asset(
+                  _getSvgPath(safeCheckedSeatState),
+                  height: widget.model.seatSvgSize.toDouble(),
+                  width: widget.model.seatSvgSize.toDouble(),
+                  fit: BoxFit.cover,
+                ),
+            )
             : SizedBox(
                 height: widget.model.seatSvgSize.toDouble(),
                 width: widget.model.seatSvgSize.toDouble(),
