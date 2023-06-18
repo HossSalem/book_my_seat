@@ -23,8 +23,11 @@ class SeatLayoutWidget extends StatelessWidget {
       boundaryMargin: const EdgeInsets.all(8),
       constrained: true,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ...List<int>.generate(stateModel.rows, (rowI) => rowI)
+          ...List<int>.generate(
+
+              stateModel.rows, (rowI) => rowI)
               .map<Row>(
                 (rowI) => Row(
                   children: [
