@@ -42,33 +42,36 @@ class _SeatWidgetState extends State<SeatWidget> {
     if (safeCheckedSeatState != null) {
       return GestureDetector(
         onTapUp: (_) {
-          if(selectedSeats < passengers){
-            switch (seatState) {
-              case SeatState.selected:
-                {
-                  setState(() {
-                    seatState = SeatState.unselected;
-                    widget.onSeatStateChanged(rowI, colI, SeatState.unselected);
-                  });
-                }
-                break;
-              case SeatState.unselected:
-                {
+
+          switch (seatState) {
+            case SeatState.selected:
+              {
+                setState(() {
+                  seatState = SeatState.unselected;
+                  widget.onSeatStateChanged(rowI, colI, SeatState.unselected);
+                });
+              }
+              break;
+            case SeatState.unselected:
+              {
+                if(selectedSeats < passengers){
                   setState(() {
                     seatState = SeatState.selected;
                     widget.onSeatStateChanged(rowI, colI, SeatState.selected);
                   });
+                }else{
+                  print('nooooooooooo mmmmk');
                 }
-                break;
-              case SeatState.disabled:
-              case SeatState.sold:
-              case SeatState.empty:
-              default:
-                {}
-                break;
-            }
-          }
 
+              }
+              break;
+            case SeatState.disabled:
+            case SeatState.sold:
+            case SeatState.empty:
+            default:
+              {}
+              break;
+          }
         },
         child: seatState != SeatState.empty
             ? Padding(
