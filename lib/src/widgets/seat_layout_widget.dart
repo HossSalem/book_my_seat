@@ -34,6 +34,8 @@ class SeatLayoutWidget extends StatelessWidget {
                   children: [
                     ...List<int>.generate(stateModel.cols, (colI) => colI)
                         .map<SeatWidget>((colI) => SeatWidget(
+                      passengers: stateModel.passengers,
+                              selectedSeats: stateModel.selectedSeats,
                               model: SeatModel(
                                 seatState: stateModel.currentSeatsState[rowI]
                                     [colI],
