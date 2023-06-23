@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class SeatWidget extends StatefulWidget {
   final SeatModel model;
-  final void Function(int rowI, int colI, SeatState currentState)
+  final void Function(int rowI, int colI,int selectedSeats,int passengers, SeatState currentState)
       onSeatStateChanged;
 
   const SeatWidget({
@@ -48,7 +48,7 @@ class _SeatWidgetState extends State<SeatWidget> {
               {
                 setState(() {
                   seatState = SeatState.unselected;
-                  widget.onSeatStateChanged(rowI, colI, SeatState.unselected);
+                  widget.onSeatStateChanged(rowI, colI,selectedSeats,passengers, SeatState.unselected);
                 });
               }
               break;
@@ -58,7 +58,7 @@ class _SeatWidgetState extends State<SeatWidget> {
                   print('${selectedSeats} ${selectedSeats} kkkkkkkkkkkkkkaa');
                   setState(() {
                     seatState = SeatState.selected;
-                    widget.onSeatStateChanged(rowI, colI, SeatState.selected);
+                    widget.onSeatStateChanged(rowI, colI,selectedSeats,passengers, SeatState.selected);
                   });
                 }else{
                   print('nooooooooooo mmmmk');

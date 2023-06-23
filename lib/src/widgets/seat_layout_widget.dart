@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class SeatLayoutWidget extends StatelessWidget {
   final SeatLayoutStateModel stateModel;
-  final void Function(int rowI, int colI, SeatState currentState)
+  final void Function(int rowI, int colI,int selectedSeats,int passengers,  SeatState currentState)
       onSeatStateChanged;
 
   const SeatLayoutWidget({
