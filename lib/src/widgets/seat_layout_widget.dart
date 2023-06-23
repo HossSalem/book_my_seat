@@ -39,6 +39,8 @@ class SeatLayoutWidget extends StatelessWidget {
                                     [colI],
                                 rowI: rowI,
                                 colI: colI,
+                                selectedSeats: stateModel.selectedSeats,
+                                passengers: stateModel.passengers,
                                 seatSvgSize: stateModel.seatSvgSize,
                                 pathSelectedSeat: stateModel.pathSelectedSeat,
                                 pathDisabledSeat: stateModel.pathDisabledSeat,

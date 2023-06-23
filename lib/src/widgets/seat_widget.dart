@@ -22,6 +22,9 @@ class _SeatWidgetState extends State<SeatWidget> {
   SeatState? seatState;
   int rowI = 0;
   int colI = 0;
+  int selectedSeats = 0;
+  int passengers = 0;
+
 
   @override
   void initState() {
@@ -29,6 +32,8 @@ class _SeatWidgetState extends State<SeatWidget> {
     seatState = widget.model.seatState;
     rowI = widget.model.rowI;
     colI = widget.model.colI;
+    selectedSeats = widget.model.selectedSeats;
+    passengers = widget.model.passengers;
   }
 
   @override
@@ -37,30 +42,33 @@ class _SeatWidgetState extends State<SeatWidget> {
     if (safeCheckedSeatState != null) {
       return GestureDetector(
         onTapUp: (_) {
-          switch (seatState) {
-            case SeatState.selected:
-              {
-                setState(() {
-                  seatState = SeatState.unselected;
-                  widget.onSeatStateChanged(rowI, colI, SeatState.unselected);
-                });
-              }
-              break;
-            case SeatState.unselected:
-              {
-                setState(() {
-                  seatState = SeatState.selected;
-                  widget.onSeatStateChanged(rowI, colI, SeatState.selected);
-                });
-              }
-              break;
-            case SeatState.disabled:
-            case SeatState.sold:
-            case SeatState.empty:
-            default:
-              {}
-              break;
+          if(selectedSeats < passengers){
+            switch (seatState) {
+              case SeatState.selected:
+                {
+                  setState(() {
+                    seatState = SeatState.unselected;
+                    widget.onSeatStateChanged(rowI, colI, SeatState.unselected);
+                  });
+                }
+                break;
+              case SeatState.unselected:
+                {
+                  setState(() {
+                    seatState = SeatState.selected;
+                    widget.onSeatStateChanged(rowI, colI, SeatState.selected);
+                  });
+                }
+                break;
+              case SeatState.disabled:
+              case SeatState.sold:
+              case SeatState.empty:
+              default:
+                {}
+                break;
+            }
           }
+
         },
         child: seatState != SeatState.empty
             ? Padding(
