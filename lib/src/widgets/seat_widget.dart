@@ -55,6 +55,7 @@ class _SeatWidgetState extends State<SeatWidget> {
             case SeatState.unselected:
               {
                 if(selectedSeats < passengers){
+                  print('${selectedSeats} ${selectedSeats} kkkkkkkkkkkkkkaa');
                   setState(() {
                     seatState = SeatState.selected;
                     widget.onSeatStateChanged(rowI, colI, SeatState.selected);
