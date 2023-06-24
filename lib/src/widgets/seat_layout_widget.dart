@@ -23,7 +23,7 @@ class SeatLayoutWidget extends StatelessWidget {
       boundaryMargin: const EdgeInsets.all(8),
       constrained: true,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+
 
         children: [
           ...List<int>.generate(
