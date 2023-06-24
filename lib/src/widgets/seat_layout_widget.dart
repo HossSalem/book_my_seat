@@ -22,6 +22,7 @@ class SeatLayoutWidget extends StatelessWidget {
       minScale: 0.8,
       boundaryMargin: const EdgeInsets.all(8),
       constrained: true,
+      scaleEnabled: false,
       child: Column(
 
 
