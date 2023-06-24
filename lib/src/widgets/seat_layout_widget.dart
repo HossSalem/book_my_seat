@@ -24,7 +24,7 @@ class SeatLayoutWidget extends StatelessWidget {
       constrained: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+
         children: [
           ...List<int>.generate(
 
