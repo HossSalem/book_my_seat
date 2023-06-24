@@ -2,6 +2,7 @@ import 'package:book_my_seat/src/model/seat_model.dart';
 import 'package:book_my_seat/src/utils/seat_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SeatWidget extends StatefulWidget {
   final SeatModel model;
@@ -22,45 +23,68 @@ class _SeatWidgetState extends State<SeatWidget> {
   SeatState? seatState;
   int rowI = 0;
   int colI = 0;
-
+  int? maxSelected;
+  int? selectedSeats;
+  late SharedPreferences prefs;
   @override
   void initState() {
     super.initState();
     seatState = widget.model.seatState;
     rowI = widget.model.rowI;
     colI = widget.model.colI;
+    getSeatCount();
   }
 
+  getSeatCount() async {
+     prefs = await SharedPreferences.getInstance();
+     maxSelected = prefs.getInt("maxSelected");
+     selectedSeats = prefs.getInt("selectedSeats");
+  }
   @override
   Widget build(BuildContext context) {
     final safeCheckedSeatState = seatState;
     if (safeCheckedSeatState != null) {
       return GestureDetector(
-        onTapUp: (_) {
-          switch (seatState) {
-            case SeatState.selected:
-              {
-                setState(() {
-                  seatState = SeatState.unselected;
-                  widget.onSeatStateChanged(rowI, colI, SeatState.unselected);
-                });
-              }
-              break;
-            case SeatState.unselected:
-              {
-                setState(() {
-                  seatState = SeatState.selected;
-                  widget.onSeatStateChanged(rowI, colI, SeatState.selected);
-                });
-              }
-              break;
-            case SeatState.disabled:
-            case SeatState.sold:
-            case SeatState.empty:
-            default:
-              {}
-              break;
-          }
+        onTapUp: (_) async {
+          await getSeatCount();
+          print('$maxSelected $selectedSeats llllllllllllllkk');
+
+            switch (seatState) {
+              case SeatState.selected:
+                {
+                  getSeatCount();
+                  setState(()  {
+                    seatState = SeatState.unselected;
+                    widget.onSeatStateChanged(rowI, colI, SeatState.unselected);
+                    prefs.setInt("selectedSeats", selectedSeats!-1);
+                  });
+                }
+                break;
+              case SeatState.unselected:
+                {
+                  if(selectedSeats! <=maxSelected!-1){
+                    getSeatCount();
+                    setState(()  {
+                      seatState = SeatState.selected;
+                      widget.onSeatStateChanged(rowI, colI, SeatState.selected);
+
+                      prefs.setInt("selectedSeats", selectedSeats!+1);
+                    });
+                  }else{
+                    print('jjjjjjjjjjjjjjjjjj');
+                }
+
+                }
+                break;
+              case SeatState.disabled:
+              case SeatState.sold:
+              case SeatState.empty:
+              default:
+                {}
+                break;
+            }
+
+
         },
         child: seatState != SeatState.empty
             ? Padding(
