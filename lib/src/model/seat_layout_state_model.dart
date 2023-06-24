@@ -4,8 +4,6 @@ import 'package:equatable/equatable.dart';
 class SeatLayoutStateModel extends Equatable {
   final int rows;
   final int cols;
-  final int selectedSeats;
-  final int passengers;
   final List<List<SeatState>> currentSeatsState;
   final int seatSvgSize;
   final String pathSelectedSeat;
@@ -18,8 +16,6 @@ class SeatLayoutStateModel extends Equatable {
   const SeatLayoutStateModel({
     required this.rows,
     required this.cols,
-    required this.selectedSeats,
-    required this.passengers,
     required this.currentSeatsState,
     this.seatSvgSize = 50,
     required this.pathSelectedSeat,
@@ -34,15 +30,11 @@ class SeatLayoutStateModel extends Equatable {
   List<Object?> get props => [
         rows,
         cols,
-    selectedSeats,
-    passengers,
         seatSvgSize,
         currentSeatsState,
         pathUnSelectedSeat,
         pathSelectedSeat,
         pathSoldSeat,
-    pathSoldSeatMale,
-    pathSoldSeatFemale,
         pathDisabledSeat,
       ];
 }

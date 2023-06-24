@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class SeatLayoutWidget extends StatelessWidget {
   final SeatLayoutStateModel stateModel;
-  final void Function(int rowI, int colI,int selectedSeats,int passengers,  SeatState currentState)
+  final void Function(int rowI, int colI, SeatState currentState)
       onSeatStateChanged;
 
   const SeatLayoutWidget({
@@ -30,19 +30,14 @@ class SeatLayoutWidget extends StatelessWidget {
               stateModel.rows, (rowI) => rowI)
               .map<Row>(
                 (rowI) => Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ...List<int>.generate(stateModel.cols, (colI) => colI)
                         .map<SeatWidget>((colI) => SeatWidget(
-                      passengers: stateModel.passengers,
-                              selectedSeats: stateModel.selectedSeats,
                               model: SeatModel(
                                 seatState: stateModel.currentSeatsState[rowI]
                                     [colI],
                                 rowI: rowI,
                                 colI: colI,
-                                selectedSeats: stateModel.selectedSeats,
-                                passengers: stateModel.passengers,
                                 seatSvgSize: stateModel.seatSvgSize,
                                 pathSelectedSeat: stateModel.pathSelectedSeat,
                                 pathDisabledSeat: stateModel.pathDisabledSeat,

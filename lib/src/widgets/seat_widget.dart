@@ -5,17 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class SeatWidget extends StatefulWidget {
   final SeatModel model;
-  final int selectedSeats ;
-  final int passengers ;
-  final void Function(int rowI, int colI,int selectedSeats,int passengers, SeatState currentState)
+  final void Function(int rowI, int colI, SeatState currentState)
       onSeatStateChanged;
 
   const SeatWidget({
     Key? key,
     required this.model,
     required this.onSeatStateChanged,
-    required this.selectedSeats,
-    required this.passengers
   }) : super(key: key);
 
   @override
@@ -26,9 +22,6 @@ class _SeatWidgetState extends State<SeatWidget> {
   SeatState? seatState;
   int rowI = 0;
   int colI = 0;
-  int selectedSeats = 0;
-  int passengers = 0;
-
 
   @override
   void initState() {
@@ -36,8 +29,6 @@ class _SeatWidgetState extends State<SeatWidget> {
     seatState = widget.model.seatState;
     rowI = widget.model.rowI;
     colI = widget.model.colI;
-    selectedSeats = widget.selectedSeats;
-    passengers = widget.passengers;
   }
 
   @override
@@ -46,28 +37,21 @@ class _SeatWidgetState extends State<SeatWidget> {
     if (safeCheckedSeatState != null) {
       return GestureDetector(
         onTapUp: (_) {
-
           switch (seatState) {
             case SeatState.selected:
               {
                 setState(() {
                   seatState = SeatState.unselected;
-                  widget.onSeatStateChanged(rowI, colI,selectedSeats,passengers, SeatState.unselected);
+                  widget.onSeatStateChanged(rowI, colI, SeatState.unselected);
                 });
               }
               break;
             case SeatState.unselected:
               {
-                if(selectedSeats < passengers){
-                  print('${selectedSeats} ${selectedSeats} kkkkkkkkkkkkkkaa');
-                  setState(() {
-                    seatState = SeatState.selected;
-                    widget.onSeatStateChanged(rowI, colI,selectedSeats,passengers, SeatState.selected);
-                  });
-                }else{
-                  print('nooooooooooo mmmmk');
-                }
-
+                setState(() {
+                  seatState = SeatState.selected;
+                  widget.onSeatStateChanged(rowI, colI, SeatState.selected);
+                });
               }
               break;
             case SeatState.disabled:
