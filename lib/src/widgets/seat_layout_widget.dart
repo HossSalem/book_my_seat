@@ -24,6 +24,7 @@ class SeatLayoutWidget extends StatelessWidget {
       constrained: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ...List<int>.generate(
 
@@ -31,6 +32,7 @@ class SeatLayoutWidget extends StatelessWidget {
               .map<Row>(
                 (rowI) => Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ...List<int>.generate(stateModel.cols, (colI) => colI)
                         .map<SeatWidget>((colI) => SeatWidget(
