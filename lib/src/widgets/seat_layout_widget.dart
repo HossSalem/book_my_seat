@@ -17,51 +17,42 @@ class SeatLayoutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InteractiveViewer(
-      maxScale: 1,
-      minScale: 0.5,
-      panEnabled: false,
-
-      boundaryMargin: const EdgeInsets.all(8),
-      constrained: true,
-      scaleEnabled: false,
-      child: Column(
+    return Column(
 
 
-        children: [
-          ...List<int>.generate(
+      children: [
+        ...List<int>.generate(
 
-              stateModel.rows, (rowI) => rowI)
-              .map<Row>(
-                (rowI) => Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ...List<int>.generate(stateModel.cols, (colI) => colI)
-                        .map<SeatWidget>((colI) => SeatWidget(
-                              model: SeatModel(
-                                seatState: stateModel.currentSeatsState[rowI]
-                                    [colI],
-                                rowI: rowI,
-                                colI: colI,
-                                seatSvgSize: stateModel.seatSvgSize,
-                                pathSelectedSeat: stateModel.pathSelectedSeat,
-                                pathDisabledSeat: stateModel.pathDisabledSeat,
-                                pathSoldSeat: stateModel.pathSoldSeat,
-                                pathSoldSeatMale: stateModel.pathSoldSeatMale,
-                                pathSoldSeatFemale: stateModel.pathSoldSeatFemale,
-                                pathUnSelectedSeat:
-                                    stateModel.pathUnSelectedSeat,
-                              ),
-                              onSeatStateChanged: onSeatStateChanged,
-                            ))
-                        .toList()
-                  ],
-                ),
-              )
-              .toList()
-        ],
-      ),
+            stateModel.rows, (rowI) => rowI)
+            .map<Row>(
+              (rowI) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ...List<int>.generate(stateModel.cols, (colI) => colI)
+                      .map<SeatWidget>((colI) => SeatWidget(
+                            model: SeatModel(
+                              seatState: stateModel.currentSeatsState[rowI]
+                                  [colI],
+                              rowI: rowI,
+                              colI: colI,
+                              seatSvgSize: stateModel.seatSvgSize,
+                              pathSelectedSeat: stateModel.pathSelectedSeat,
+                              pathDisabledSeat: stateModel.pathDisabledSeat,
+                              pathSoldSeat: stateModel.pathSoldSeat,
+                              pathSoldSeatMale: stateModel.pathSoldSeatMale,
+                              pathSoldSeatFemale: stateModel.pathSoldSeatFemale,
+                              pathUnSelectedSeat:
+                                  stateModel.pathUnSelectedSeat,
+                            ),
+                            onSeatStateChanged: onSeatStateChanged,
+                          ))
+                      .toList()
+                ],
+              ),
+            )
+            .toList()
+      ],
     );
   }
 }
