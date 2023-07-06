@@ -78,6 +78,8 @@ class _SeatWidgetState extends State<SeatWidget> {
                 break;
               case SeatState.disabled:
               case SeatState.sold:
+              case SeatState.soldMale:
+              case SeatState.soldFemale:
               case SeatState.empty:
               default:
                 {}
@@ -125,6 +127,14 @@ class _SeatWidgetState extends State<SeatWidget> {
       case SeatState.sold:
         {
           return widget.model.pathSoldSeat;
+        }
+      case SeatState.soldFemale:
+        {
+          return widget.model.pathSoldSeatFemale;
+        }
+      case SeatState.soldMale:
+        {
+          return widget.model.pathSoldSeatMale;
         }
       case SeatState.empty:
       default:

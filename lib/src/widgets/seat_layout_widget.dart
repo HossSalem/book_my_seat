@@ -42,8 +42,7 @@ class SeatLayoutWidget extends StatelessWidget {
                               pathSoldSeat: stateModel.pathSoldSeat,
                               pathSoldSeatMale: stateModel.pathSoldSeatMale,
                               pathSoldSeatFemale: stateModel.pathSoldSeatFemale,
-                              pathUnSelectedSeat:
-                                  stateModel.pathUnSelectedSeat,
+                              pathUnSelectedSeat: stateModel.pathUnSelectedSeat,
                             ),
                             onSeatStateChanged: onSeatStateChanged,
                           ))

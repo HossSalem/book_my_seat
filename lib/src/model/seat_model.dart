@@ -35,6 +35,8 @@ class SeatModel extends Equatable {
         pathSelectedSeat,
         pathDisabledSeat,
         pathSoldSeat,
+    pathSoldSeatMale,
+    pathSoldSeatFemale,
         pathUnSelectedSeat,
       ];
 }
