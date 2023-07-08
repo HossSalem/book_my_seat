@@ -17,7 +17,7 @@ class SeatLayoutWidget extends StatelessWidget {
   int seatNo = 0;
   @override
   Widget build(BuildContext context) {
-    int seatNo = 0;
+
     return Column(
 
 
@@ -60,8 +60,8 @@ class SeatLayoutWidget extends StatelessWidget {
 
   int? seatNoFunc(SeatState state){
     if(state != SeatState.empty){
-
-      return seatNo ++;
+      seatNo = seatNo +1;
+      return seatNo;
 
     }else{
       return null;
