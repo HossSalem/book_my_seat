@@ -5,6 +5,7 @@ class SeatModel extends Equatable {
   final SeatState seatState;
   final int rowI;
   final int colI;
+  final int? seatNum;
   final int seatSvgSize;
   final String pathSelectedSeat;
   final String pathUnSelectedSeat;
@@ -17,6 +18,8 @@ class SeatModel extends Equatable {
     required this.seatState,
     required this.rowI,
     required this.colI,
+    required this.seatNum,
+
     this.seatSvgSize = 50,
     required this.pathSelectedSeat,
     required this.pathDisabledSeat,
@@ -31,6 +34,7 @@ class SeatModel extends Equatable {
         seatState,
         rowI,
         colI,
+      seatNum,
         seatSvgSize,
         pathSelectedSeat,
         pathDisabledSeat,

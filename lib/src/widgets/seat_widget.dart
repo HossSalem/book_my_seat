@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SeatWidget extends StatefulWidget {
   final SeatModel model;
-  final void Function(int rowI, int colI, SeatState currentState)
+  final void Function(int rowI, int colI,int seatNo, SeatState currentState)
       onSeatStateChanged;
 
   const SeatWidget({
@@ -25,6 +25,7 @@ class _SeatWidgetState extends State<SeatWidget> {
   int colI = 0;
   int? maxSelected;
   int? selectedSeats;
+  int? seatNo = 0;
   late SharedPreferences prefs;
   @override
   void initState() {
@@ -32,6 +33,7 @@ class _SeatWidgetState extends State<SeatWidget> {
     seatState = widget.model.seatState;
     rowI = widget.model.rowI;
     colI = widget.model.colI;
+    seatNo = widget.model.seatNum;
     getSeatCount();
   }
 
@@ -55,7 +57,7 @@ class _SeatWidgetState extends State<SeatWidget> {
                   getSeatCount();
                   setState(()  {
                     seatState = SeatState.unselected;
-                    widget.onSeatStateChanged(rowI, colI, SeatState.unselected);
+                    widget.onSeatStateChanged(rowI, colI,seatNo!, SeatState.unselected);
                     prefs.setInt("selectedSeats", selectedSeats!-1);
                   });
                 }
@@ -66,7 +68,7 @@ class _SeatWidgetState extends State<SeatWidget> {
                     getSeatCount();
                     setState(()  {
                       seatState = SeatState.selected;
-                      widget.onSeatStateChanged(rowI, colI, SeatState.selected);
+                      widget.onSeatStateChanged(rowI, colI,seatNo! ,SeatState.selected);
 
                       prefs.setInt("selectedSeats", selectedSeats!+1);
                     });
@@ -109,6 +111,8 @@ class _SeatWidgetState extends State<SeatWidget> {
     }
     return const SizedBox();
   }
+
+
 
   String _getSvgPath(SeatState state) {
     switch (state) {

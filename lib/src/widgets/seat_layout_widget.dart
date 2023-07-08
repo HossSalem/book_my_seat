@@ -6,17 +6,18 @@ import 'package:flutter/material.dart';
 
 class SeatLayoutWidget extends StatelessWidget {
   final SeatLayoutStateModel stateModel;
-  final void Function(int rowI, int colI, SeatState currentState)
+  final void Function(int rowI, int colI,int SeatNo, SeatState currentState)
       onSeatStateChanged;
 
-  const SeatLayoutWidget({
+   SeatLayoutWidget({
     Key? key,
     required this.stateModel,
     required this.onSeatStateChanged,
   }) : super(key: key);
-
+  int seatNo = 0;
   @override
   Widget build(BuildContext context) {
+    int seatNo = 0;
     return Column(
 
 
@@ -36,6 +37,8 @@ class SeatLayoutWidget extends StatelessWidget {
                                   [colI],
                               rowI: rowI,
                               colI: colI,
+                              seatNum: seatNoFunc(stateModel.currentSeatsState[rowI]
+                              [colI]) ,
                               seatSvgSize: stateModel.seatSvgSize,
                               pathSelectedSeat: stateModel.pathSelectedSeat,
                               pathDisabledSeat: stateModel.pathDisabledSeat,
@@ -53,5 +56,15 @@ class SeatLayoutWidget extends StatelessWidget {
             .toList()
       ],
     );
+  }
+
+  int? seatNoFunc(SeatState state){
+    if(state != SeatState.empty){
+
+      return seatNo ++;
+
+    }else{
+      return null;
+    }
   }
 }
